@@ -4,14 +4,12 @@
  */
 package VirtualPetProject;
 
-import java.io.Serializable;
-
 /**
  *
  * @author madis
  */
 
-public abstract class Animal implements Serializable {
+public abstract class Animal {
     
     protected String petName;
     private int hunger;
@@ -34,6 +32,15 @@ public abstract class Animal implements Serializable {
     public Animal(String petName) {
         this();
         this.petName = petName;
+    }
+    
+    public void setAttributes(int hunger, int social, int bladder, int hygiene, int energy, int fun) {
+        setHunger(hunger);
+        setSocial(social);
+        setBladder(bladder);
+        setHygiene(hygiene);
+        setEnergy(energy);
+        setFun(fun);
     }
     
     // Getters and Setters
@@ -93,9 +100,23 @@ public abstract class Animal implements Serializable {
         this.fun = Math.max(0, Math.min(fun, 100));
     }
     
-    public abstract void displayNeeds();
     
-    public abstract void fulfillNeed(int need);
+    public String displayNeeds(){
+        return String.format("%s's Needs:"
+                + "\n Hunger: %d"
+                + "\n Social: %d"
+                + "\n Bladder: %d"
+                + "\n Hygiene: %d"
+                + "\n Energy: %d"
+                + "\n Fun: %d\n",
+                getPetName(), 
+                getHunger(), 
+                getSocial(), 
+                getBladder(), 
+                getHygiene(), 
+                getEnergy(), 
+                getFun());
+    }
     
     public abstract void fulfillHunger();
 
