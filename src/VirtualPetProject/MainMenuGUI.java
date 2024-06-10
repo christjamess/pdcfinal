@@ -40,6 +40,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 51, 102));
 
+        createPet.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         createPet.setText("Create a new pet");
         createPet.setAlignmentX(0.5F);
         createPet.setHideActionText(true);
@@ -49,6 +50,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
             }
         });
 
+        loadPet.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         loadPet.setText("Load existing pet");
         loadPet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -59,7 +61,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Snap ITC", 0, 18)); // NOI18N
         jLabel1.setText("Select a new pet to be your virtual bestie!");
 
-        jLabel2.setFont(new java.awt.Font("Snap ITC", 0, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Snap ITC", 0, 36)); // NOI18N
         jLabel2.setText("Welcome to V-Pet!");
 
         jLabel3.setFont(new java.awt.Font("Snap ITC", 0, 12)); // NOI18N
@@ -73,26 +75,26 @@ public class MainMenuGUI extends javax.swing.JFrame {
                 .addContainerGap(217, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(loadPet, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(createPet, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(321, 321, 321))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(180, 180, 180))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(308, 308, 308))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(loadPet, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(createPet, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(321, 321, 321))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addGap(325, 325, 325))))
+                        .addGap(218, 218, 218))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(122, Short.MAX_VALUE)
+                .addContainerGap(93, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
@@ -116,6 +118,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
 
     private void loadPetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadPetActionPerformed
         // TODO add your handling code here:
+        new LoadPet().setVisible(true);
     }//GEN-LAST:event_loadPetActionPerformed
 
     /**
