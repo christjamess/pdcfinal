@@ -4,6 +4,8 @@
  */
 package VirtualPetProject;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author zenox
@@ -13,6 +15,9 @@ public class CreatingNewPet extends javax.swing.JFrame {
     /**
      * Creates new form CreatingNewPet
      */
+        private Animal pet;
+
+    
     public CreatingNewPet() {
         initComponents();
     }
@@ -26,7 +31,10 @@ public class CreatingNewPet extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jComboBox1 = new javax.swing.JComboBox<>();
+        jTextField1 = new javax.swing.JTextField();
+        CreatePet = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -37,29 +45,70 @@ public class CreatingNewPet extends javax.swing.JFrame {
             }
         });
 
+        jTextField1.setText("jTextField1");
+
+        CreatePet.setText("jButton1");
+        CreatePet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CreatePetActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap(417, Short.MAX_VALUE)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(361, 361, 361))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(361, 361, 361))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(CreatePet)
+                        .addGap(342, 342, 342))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(153, 153, 153)
+                .addGap(119, 119, 119)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(375, Short.MAX_VALUE))
+                .addGap(130, 130, 130)
+                .addComponent(CreatePet)
+                .addContainerGap(222, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-a        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void CreatePetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreatePetActionPerformed
+        String petName = jTextField1.getText();
+        String petType = jComboBox1.getSelectedItem().toString();
+        if(!petName.isEmpty()){
+            if(petType.equals("Dog")) {
+                pet = new Dog(petName);
+            } else if (petType.equals("Cat")) {
+                pet = new Cat(petName);
+            } else {
+                JOptionPane.showMessageDialog(this, "Invalid pet type", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
+            GameplayGUI gameplayFrame = new GameplayGUI(pet);
+            gameplayFrame.setVisible(true);
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Please enter a pet name", "Error", JOptionPane.ERROR_MESSAGE);
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_CreatePetActionPerformed
 
     /**
      * @param args the command line arguments
@@ -97,6 +146,9 @@ a        // TODO add your handling code here:
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CreatePet;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

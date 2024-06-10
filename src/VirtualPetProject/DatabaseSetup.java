@@ -17,7 +17,7 @@ import java.sql.Statement;
  
 public class DatabaseSetup {
     
-    private static final String URL = "jdbc:derby:virtualpetdb;create=true";
+    private static final String URL = "jdbc:derby:VirtualPetDB;create=true";
     private static final String USERNAME = "pdc"; //your DB username
     private static final String PASSWORD = "pdc"; //your DB password
 

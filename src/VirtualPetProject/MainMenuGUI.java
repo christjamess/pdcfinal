@@ -4,6 +4,9 @@
  */
 package VirtualPetProject;
 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.Color;
 
 /**
@@ -105,6 +108,10 @@ public class MainMenuGUI extends javax.swing.JFrame {
 
     private void createPetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createPetActionPerformed
         // TODO add your handling code here:
+        // Create an instance of CreatingNewPet and display it
+        new CreatingNewPet().setVisible(true);
+        // Optionally close the current window or disable it
+        // this.dispose();
     }//GEN-LAST:event_createPetActionPerformed
 
     private void loadPetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadPetActionPerformed
