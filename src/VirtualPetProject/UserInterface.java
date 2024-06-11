@@ -4,15 +4,16 @@
  */
 package VirtualPetProject;
 
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+
 
 /**
  *
  * @author madis
  */
+import java.util.InputMismatchException;
+import java.util.List;
+import java.util.Scanner;
+
 public class UserInterface {
 
     private static final Scanner scanner = new Scanner(System.in);
@@ -36,11 +37,11 @@ public class UserInterface {
     public static int selectPet() {
         int pet;
         System.out.println("Select your animal below:");
-        System.out.println("1. Cat\n2. Dog\n3. Rabbit\n4. Hamster\n5. Horse");
+        System.out.println("1. Cat\n2. Dog\n");
         while (true) {
             try {
                 pet = scanner.nextInt();
-                if (pet < 1 || pet > 5) {
+                if (pet < 1 || pet > 2) {
                     System.out.println("Invalid pet selection. Please try again:");
                 } else {
                     break;
@@ -63,66 +64,48 @@ public class UserInterface {
         System.out.println(message);
     }
 
-    public static void displaySavedPetsList(Map<String, Animal> petMap) {
-        System.out.println("Choose a pet to load:");
-        int index = 1;
-        for (String petName : petMap.keySet()) {
-            System.out.println(index + ". " + petName);
-            index++;
-        }
+    public static char getNeedChoice() {
+        System.out.println("Select a need to fulfill or press 'n' to create a new pet:\nSelect 'x' to save and exit.");
+        System.out.println("1. Feed\n2. Cuddle\n3. Toilet\n4. Bath\n5. Sleep\n6. Play");
+        return scanner.next().charAt(0);
     }
 
-    public static int selectSavedPet(Map<String, Animal> petMap) {
-        int petIndex;
-        while (true) {
+    public static int getUserIntChoice(int min, int max) {
+        int choice = 0;
+        boolean valid = false;
+
+        while (!valid) {
             try {
-                petIndex = scanner.nextInt() - 1; 
-                if (petIndex < 0 || petIndex >= petMap.size()) {
-                    System.out.println("Invalid pet selection. Please try again:");
+                choice = scanner.nextInt();
+                if (choice >= min && choice <= max) {
+                    valid = true;
                 } else {
-                    break;
+                    System.out.println("Invalid choice. Please enter a number between " + min + " and " + max + ".");
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Please enter a number.");
-                scanner.nextLine();
+                scanner.nextLine(); // Clear the invalid input
+                System.out.println("Invalid input. Please enter a valid integer.");
             }
         }
-        return petIndex;
+        return choice;
     }
 
-    public static char getUserChoice() {
-        return scanner.next().charAt(0);
+    public static int displayPetSelectionMenu(List<Animal> existingPets) {
+        System.out.println("Select a pet to play with:");
+        int index = 1;
+        for (Animal pet : existingPets) {
+            System.out.println(index + ". " + pet.getPetName() + " (" + pet.getClass().getSimpleName() + ")");
+            index++;
+        }
+        return getUserIntChoice(1, existingPets.size());
     }
 
-    public static char getNeedChoice() {
-        System.out.println("Select a need to fulfill or press 'n' to create a new pet:\nSelect 'x' to exit.");
-        System.out.println("1. Hunger\n2. Social\n3. Bladder\n4. Hygiene\n5. Energy\n6. Fun");
-        return scanner.next().charAt(0);
-    }
-
-
-    public static void displaySavedPetsBeforeExit() {
-        System.out.println("\nThank you for playing!\nView Your Pets before you go:");
-        FileHandler.displayPetRegistryFromFile();
-    }
-    
     public static void displayExitMenu() {
         System.out.println("Exiting V-Pet. Goodbye!");
         System.exit(0);
     }
-    
-    public static int getUserIntChoice() {
-        try {
-            return scanner.nextInt();
-        } catch (InputMismatchException e) {
-            scanner.nextLine();
-            System.out.println("Invalid input. Please enter a valid integer.");
-            return getUserIntChoice();
-        }
-    }
-    
+
     public static void closeScanner() {
         scanner.close();
     }
-
 }

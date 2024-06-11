@@ -4,98 +4,136 @@
  */
 package VirtualPetProject;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 /**
  *
  * @author madis
  */
 public class PetInteraction {
 
-    private static final Map<String, Animal> petMap = new HashMap<>();
-    private static final List<String> petNamesList = new ArrayList<>();
-
-    public static void loadSavedPet() {
-        FileHandler.loadSavedPets(petMap);
-        if (petMap.isEmpty()) {
-            UserInterface.displayMessage("No saved pets found.");
-            return;
-        }
-        UserInterface.displaySavedPetsList(petMap);
-        int choiceIndex = UserInterface.selectSavedPet(petMap);
-        if (choiceIndex != -1) {
-            String selectedPetName = petMap.keySet().toArray(new String[0])[choiceIndex];
-            Animal petObject = petMap.get(selectedPetName);
-            UserInterface.displayMessage("Data loaded successfully.");
-            petObject.displayNeeds();
-            interactWithPet(petObject);
-        } else {
-            UserInterface.displayMessage("Invalid selection.");
-        }
-    }
+    private static Animal petObject;
 
     public static void createNewPet() {
-        int pet = UserInterface.selectPet();
-        String filePath = FileHandler.getFilePath(pet);
+        int petType = UserInterface.selectPet();
+        String filePath = FileHandler.getFilePath(petType);
         if (filePath == null) {
             UserInterface.displayMessage("Invalid pet selection.");
             return;
         }
-        FileHandler.readFromFile(filePath); // Read file before prompting for pet name
+        FileHandler.readFromFile(filePath);
         String petName = UserInterface.getPetName();
-        petNamesList.add(petName);
-        Animal petObject = VirtualPetLogic.createPet(pet, petName);
+        petObject = VirtualPetLogic.createPet(petType, petName);
         if (petObject == null) {
             UserInterface.displayMessage("Invalid pet selection.");
             return;
         }
-        petMap.put(petName, petObject);
         interactWithPet(petObject);
+    }
+
+    public static void setPet(Animal pet) {
+        petObject = pet;
+        UserInterface.displayMessage("Selected pet: " + pet.getPetName() + " (" + pet.getClass().getSimpleName() + ")");
+        interactWithPet(pet);
     }
 
     public static void interactWithPet(Animal petObject) {
         char choice;
         do {
+            System.out.println(petObject.displayNeeds());
             choice = UserInterface.getNeedChoice();
             if (Character.isDigit(choice)) {
                 int need = Character.getNumericValue(choice);
-                petObject.fulfillNeed(need);
-                petObject.displayNeeds();
+                switch (need) {
+                    case 1:
+                        handleFeed();
+                        break;
+                    case 2:
+                        handleCuddle();
+                        break;
+                    case 3:
+                        handleToilet();
+                        break;
+                    case 4:
+                        handleBath();
+                        break;
+                    case 5:
+                        handleSleep();
+                        break;
+                    case 6:
+                        handlePlay();
+                        break;
+                    default:
+                        UserInterface.displayInvalidChoiceMessage();
+                        break;
+                }
             } else if (choice == 'n') {
                 createNewPet();
                 return;
             } else if (choice == 'x') {
-                handleExitChoice();
+                saveAndExit();
             } else {
                 UserInterface.displayInvalidChoiceMessage();
             }
         } while (choice != 'x');
     }
 
-    private static void handleExitChoice() {
-        FileHandler.savePetRegistryToFile(petNamesList);
-        UserInterface.displayMessage("\nWould you like to:");
-        UserInterface.displayMessage("s. Save pet state");
-        UserInterface.displayMessage("d. Delete saved file");
-        char innerChoice;
-        do {
-            innerChoice = UserInterface.getUserChoice();
-            switch (innerChoice) {
-                case 's':
-                    FileHandler.saveState(petMap);
-                    UserInterface.displaySavedPetsBeforeExit();
-                    break;
-                case 'd':
-                    FileHandler.deleteSavedFile();
-                    UserInterface.displaySavedPetsBeforeExit();
-                    break;
-                default:
-                    UserInterface.displayInvalidChoiceMessage();
-            }
-        } while (innerChoice != 's' && innerChoice != 'd');
+    private static void handleFeed() {
+        if (petObject.getHunger() > 80) {
+            System.out.println(petObject.getPetName() + " is too full! Try a different interaction.");
+        } else {
+            petObject.fulfillHunger();
+            System.out.println("Great! You fed " + petObject.getPetName() + ".");
+        }
+    }
+
+    private static void handleCuddle() {
+        if (petObject.getHunger() < 20) {
+            System.out.println(petObject.getPetName() + " is too hungry to interact! Try a different interaction.");
+        } else {
+            petObject.fulfillSocial();
+            System.out.println("Great! You cuddled with " + petObject.getPetName() + ".");
+        }
+    }
+
+    private static void handleToilet() {
+        if (petObject.getBladder() > 50) {
+            System.out.println(petObject.getPetName() + " doesn't need the toilet right now! Try a different interaction.");
+        } else {
+            petObject.fulfillBladder();
+            System.out.println("Great! " + petObject.getPetName() + " went to the toilet.");
+        }
+    }
+
+    private static void handleBath() {
+        if (petObject.getEnergy() < 50) {  
+            System.out.println(petObject.getPetName() + " is too tired to bathe! Try a different interaction.");
+        } else {
+            petObject.fulfillHygiene();
+            System.out.println("Great! You bathed " + petObject.getPetName() + ".");
+        }
+    }
+
+    private static void handleSleep() {
+        if (petObject.getEnergy() > 70) {
+            System.out.println(petObject.getPetName() + " is full of energy! Try a different interaction.");
+        } else {
+            petObject.fulfillEnergy();
+            System.out.println("Great! " + petObject.getPetName() + " slept.");
+        }
+    }
+
+    private static void handlePlay() {
+        if (petObject.getEnergy() < 30) {
+            System.out.println(petObject.getPetName() + " is too tired to play! Try a different interaction.");
+        } else if (petObject.getHunger() < 30) {  
+            System.out.println(petObject.getPetName() + " is too hungry to play! Try a different interaction.");
+        } else {
+            petObject.fulfillFun();
+            System.out.println("Great! You played with " + petObject.getPetName() + ".");
+        }
+    }
+
+    private static void saveAndExit() {
+        DatabaseSetup.saveNewPet(petObject);
         UserInterface.displayExitMenu();
     }
 }
