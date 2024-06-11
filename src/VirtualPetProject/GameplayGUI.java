@@ -4,6 +4,8 @@
  */
 package VirtualPetProject;
 
+import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -17,13 +19,27 @@ public class GameplayGUI extends javax.swing.JFrame {
      */
     private final Animal pet;
     
-
     public GameplayGUI(Animal pet) {
         this.pet = pet;
         initComponents();
-        
+        showMessage("Welcome to V-Pet! Press the buttons to interact with your new pet.");
+
+        // Initialize progress bars
+        updateProgressBars();
     }
     
+    private void updateProgressBars() {
+        jProgressBar1.setValue(pet.getHunger());
+        jProgressBar2.setValue(pet.getSocial());
+        jProgressBar3.setValue(pet.getFun());
+        jProgressBar4.setValue(pet.getEnergy());
+        jProgressBar5.setValue(pet.getBladder());
+        jProgressBar6.setValue(pet.getHygiene());
+    }
+    
+    private void showMessage(String message) {
+        JOptionPane.showMessageDialog(this, message, "Pet Message", JOptionPane.INFORMATION_MESSAGE);
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -233,29 +249,69 @@ public class GameplayGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        if (pet.getHunger() > 60) {
+            showMessage("Mmh, it seems like " + pet.getPetName() +
+                    " is too full to eat right now. Try again later.");
+        } else {
+            pet.fulfillHunger();
+            showMessage(pet.getPetName() + " is now full!");
+            updateProgressBars();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        if (pet.getSocial() > 60) {
+            showMessage("Your pet has had enough cuddles for now.");
+        } else {
+            pet.fulfillSocial();
+            showMessage(pet.getPetName() + " is happy with the cuddles!");
+            updateProgressBars();
+        }
+    }
+    
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        if (pet.getBladder() > 60) {
+            showMessage(pet.getPetName() + " does not need to go to the toilet right now.");
+        } else {
+            pet.fulfillBladder();
+            showMessage(pet.getPetName() + " feels relieved!");
+            updateProgressBars();
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        pet.fulfillHygiene();
+        showMessage(pet.getPetName() + " is now clean!");
+        updateProgressBars();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        if (pet.getEnergy() > 40) {
+            showMessage(pet.getPetName() + " is not tired.");
+        } else {
+            pet.fulfillEnergy();
+            showMessage(pet.getPetName() + " is well-rested!");
+            updateProgressBars();
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
+        if (pet.getFun() > 60) {
+            showMessage(pet.getPetName() + " has had enough playtime for now.");
+        } else {
+            pet.fulfillFun();
+            showMessage(pet.getPetName() + " had a lot of fun!");
+            updateProgressBars();
+        }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
+        DatabaseSetup.saveNewPet(pet);
+        
+        showMessage("Pet saved. Exiting V-Pet. Goodbye!");
     }//GEN-LAST:event_jButton7ActionPerformed
 
+    
     /**
      * @param args the command line arguments
      */

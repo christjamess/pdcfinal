@@ -123,8 +123,8 @@ public class LoadPet extends javax.swing.JFrame {
             Animal selectedPet = findPetByNameAndType(selectedPetName);
             if (selectedPet != null) {
                 // Proceed with the selected pet (selectedPet)
-                GameplayGUI gameGUI = new GameplayGUI(selectedPet);
-                gameGUI.show();
+                GameplayGUI gameplayGUI = new GameplayGUI(selectedPet);
+                gameplayGUI.show();
         
                 dispose(); // Close the current frame
             } else {
