@@ -53,7 +53,7 @@ public class GameplayGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setFont(new java.awt.Font("Snap ITC", 0, 18)); // NOI18N
-        jButton1.setText("Feed");
+        jButton1.setText("Feeds");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -131,7 +131,7 @@ public class GameplayGUI extends javax.swing.JFrame {
                         .addComponent(jButton1)
                         .addGap(49, 49, 49)
                         .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                         .addComponent(jButton3)
                         .addGap(45, 45, 45)
                         .addComponent(jButton4)
