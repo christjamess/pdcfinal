@@ -57,7 +57,7 @@ public abstract class Animal {
     }
 
     public void setHunger(int hunger) {
-        this.hunger = Math.max(0, Math.min(hunger, 100));
+        this.hunger = Math.min(Math.max(hunger, 0), 100);
     }
 
     public int getSocial() {

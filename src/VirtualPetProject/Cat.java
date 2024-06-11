@@ -16,10 +16,10 @@ public class Cat extends Animal {
 
     @Override
     public void fulfillHunger() {
-        setHunger(getHunger() + 5);
-        setSocial(getSocial() + 10);
-        setBladder(getBladder() - 5);
-        setEnergy(getEnergy() + 5);
+        setHunger(getHunger() + 40);
+        setSocial(getSocial() + 20);
+        setBladder(getBladder() - 30);
+        setEnergy(getEnergy() + 20);
         setFun(getFun() + 10);
     }
 
