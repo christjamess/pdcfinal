@@ -4,6 +4,7 @@
  */
 package VirtualPetProject;
 
+
 /**
  *
  * @author zenox
@@ -12,15 +13,18 @@ public class GameplayGUI extends javax.swing.JFrame {
 
     /**
      * Creates new form GameplayGUI
-     * 
+     *
      */
-            private Animal pet;
-
+    private final Animal pet;
     
-    public GameplayGUI(Animal pet) {
-        initComponents();
-    }
 
+    public GameplayGUI(Animal pet) {
+        this.pet = pet;
+        initComponents();
+        
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -49,11 +53,12 @@ public class GameplayGUI extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        jButton7 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setFont(new java.awt.Font("Snap ITC", 0, 18)); // NOI18N
-        jButton1.setText("Feeds");
+        jButton1.setText("Feed");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -64,16 +69,36 @@ public class GameplayGUI extends javax.swing.JFrame {
         jButton2.setText("Cuddle");
 
         jButton3.setFont(new java.awt.Font("Snap ITC", 0, 18)); // NOI18N
-        jButton3.setText("Walk");
+        jButton3.setText("Toilet");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setFont(new java.awt.Font("Snap ITC", 0, 18)); // NOI18N
-        jButton4.setText("Sleep");
+        jButton4.setText("Bath");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setFont(new java.awt.Font("Snap ITC", 0, 18)); // NOI18N
-        jButton5.setText("Toilet");
+        jButton5.setText("Sleep");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setFont(new java.awt.Font("Snap ITC", 0, 18)); // NOI18N
-        jButton6.setText("Shower");
+        jButton6.setText("Play");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Hunger:");
 
@@ -97,6 +122,14 @@ public class GameplayGUI extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
+
+        jButton7.setFont(new java.awt.Font("Snap ITC", 0, 18)); // NOI18N
+        jButton7.setText("Save And Exit");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -127,24 +160,31 @@ public class GameplayGUI extends javax.swing.JFrame {
                         .addGap(99, 99, 99)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(49, 49, 49)
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                        .addComponent(jButton3)
-                        .addGap(45, 45, 45)
-                        .addComponent(jButton4)
-                        .addGap(48, 48, 48)
-                        .addComponent(jButton5)
-                        .addGap(44, 44, 44)
-                        .addComponent(jButton6)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jButton7))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addGap(49, 49, 49)
+                                .addComponent(jButton2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                                .addComponent(jButton3)
+                                .addGap(45, 45, 45)
+                                .addComponent(jButton4)
+                                .addGap(48, 48, 48)
+                                .addComponent(jButton5)
+                                .addGap(44, 44, 44)
+                                .addComponent(jButton6)))
                         .addGap(36, 36, 36))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(68, 68, 68)
+                .addGap(17, 17, 17)
+                .addComponent(jButton7)
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -179,8 +219,15 @@ public class GameplayGUI extends javax.swing.JFrame {
                     .addComponent(jButton4)
                     .addComponent(jButton5)
                     .addComponent(jButton6))
-                .addContainerGap(140, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
+
+        jButton1.getAccessibleContext().setAccessibleName("Feed");
+        jButton3.getAccessibleContext().setAccessibleName("Toilet");
+        jButton4.getAccessibleContext().setAccessibleName("Bath");
+        jButton5.getAccessibleContext().setAccessibleName("Sleep");
+        jButton6.getAccessibleContext().setAccessibleName("Play");
+        jButton7.getAccessibleContext().setAccessibleName("Save And Exit");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -189,10 +236,30 @@ public class GameplayGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7ActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -200,6 +267,7 @@ public class GameplayGUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

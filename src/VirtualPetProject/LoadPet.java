@@ -4,19 +4,61 @@
  */
 package VirtualPetProject;
 
+import java.util.List;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author zenox
  */
 public class LoadPet extends javax.swing.JFrame {
-
+    
+    private final List<Animal> existingPets;
+    
     /**
      * Creates new form LoadPet
+     * @param existingPets
      */
-    public LoadPet() {
+    
+    
+    public LoadPet(List<Animal> existingPets) {
+        this.existingPets = existingPets;
         initComponents();
+        populatePetNames();
     }
+    
+    private void populatePetNames() {
+        for (Animal pet : existingPets) {
+            jComboBox1.addItem(pet.getPetName() + " (" + getType(pet) + ")");
+        }
+    }
+    
+    private String getType(Animal pet) {
+        String type = "";
+        if (pet instanceof Dog) {
+            type = "Dog";
+        } else if (pet instanceof Cat) {
+            type = "Cat";
+        }
+        return type;
+    }
+    
+    private Animal findPetByNameAndType(String nameAndType) {
+        // Extract pet name from the combo box item (name(type))
+        String petName = nameAndType.split("\\(")[0].trim();
 
+        // Extract pet type from the combo box item (name(type))
+        String petType = nameAndType.split("\\(")[1].replace(")", "").trim();
+
+        // Find the pet by name and type
+        for (Animal pet : existingPets) {
+            if (pet.getPetName().equals(petName) && getType(pet).equals(petType)) {
+                return pet;
+            }
+        }
+        return null; // Pet not found
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -76,7 +118,21 @@ public class LoadPet extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        String selectedPetName = (String) jComboBox1.getSelectedItem();
+        if (selectedPetName != null) {
+            Animal selectedPet = findPetByNameAndType(selectedPetName);
+            if (selectedPet != null) {
+                // Proceed with the selected pet (selectedPet)
+                GameplayGUI gameGUI = new GameplayGUI(selectedPet);
+                gameGUI.show();
+        
+                dispose(); // Close the current frame
+            } else {
+                JOptionPane.showMessageDialog(this, "Error loading selected pet.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Please select a pet.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

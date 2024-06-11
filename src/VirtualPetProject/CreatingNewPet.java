@@ -159,7 +159,6 @@ public class CreatingNewPet extends javax.swing.JFrame {
 
     private void createPet(String petType) {
         String petName = jTextField1.getText();
-
         if (!petName.isEmpty()) {
             if (petType.equals("Cat")) {
                 pet = new Cat(petName);
