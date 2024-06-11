@@ -169,9 +169,11 @@ public class CreatingNewPet extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Invalid pet type", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            GameplayGUI gameplayFrame = new GameplayGUI(pet);
+            
+            GameplayFrame gameplayFrame = new GameplayFrame(pet);
             gameplayFrame.setVisible(true);
-            dispose(); // Close the current frame
+            dispose();
+            
         } else {
             JOptionPane.showMessageDialog(this, "Please enter a pet name", "Error", JOptionPane.ERROR_MESSAGE);
         }

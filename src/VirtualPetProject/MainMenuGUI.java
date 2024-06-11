@@ -112,6 +112,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         // Create an instance of CreatingNewPet and display it
         new CreatingNewPet().setVisible(true);
+        createPet.show();
         // Optionally close the current window or disable it
         this.dispose();
     }//GEN-LAST:event_createPetActionPerformed
