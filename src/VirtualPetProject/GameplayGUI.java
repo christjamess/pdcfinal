@@ -83,6 +83,11 @@ public class GameplayGUI extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Snap ITC", 0, 18)); // NOI18N
         jButton2.setText("Cuddle");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Snap ITC", 0, 18)); // NOI18N
         jButton3.setText("Toilet");
@@ -238,13 +243,6 @@ public class GameplayGUI extends javax.swing.JFrame {
                 .addContainerGap(89, Short.MAX_VALUE))
         );
 
-        jButton1.getAccessibleContext().setAccessibleName("Feed");
-        jButton3.getAccessibleContext().setAccessibleName("Toilet");
-        jButton4.getAccessibleContext().setAccessibleName("Bath");
-        jButton5.getAccessibleContext().setAccessibleName("Sleep");
-        jButton6.getAccessibleContext().setAccessibleName("Play");
-        jButton7.getAccessibleContext().setAccessibleName("Save And Exit");
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -258,16 +256,7 @@ public class GameplayGUI extends javax.swing.JFrame {
             updateProgressBars();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-    
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        if (pet.getSocial() > 60) {
-            showMessage("Your pet has had enough cuddles for now.");
-        } else {
-            pet.fulfillSocial();
-            showMessage(pet.getPetName() + " is happy with the cuddles!");
-            updateProgressBars();
-        }
-    }
+
     
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         if (pet.getBladder() > 60) {
@@ -310,6 +299,16 @@ public class GameplayGUI extends javax.swing.JFrame {
         
         showMessage("Pet saved. Exiting V-Pet. Goodbye!");
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if (pet.getSocial() > 60) {
+            showMessage("Your pet has had enough cuddles for now.");
+        } else {
+            pet.fulfillSocial();
+            showMessage(pet.getPetName() + " is happy with the cuddles!");
+            updateProgressBars();
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     
     /**
