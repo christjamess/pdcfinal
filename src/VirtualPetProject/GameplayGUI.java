@@ -248,7 +248,7 @@ public class GameplayGUI extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (pet.getHunger() > 60) {
-            showMessage("Mmh, it seems like " + pet.getPetName() +
+            showMessage(pet.getPetName() +
                     " is too full to eat right now. Try again later.");
         } else {
             pet.fulfillHunger();
@@ -279,7 +279,7 @@ public class GameplayGUI extends javax.swing.JFrame {
             showMessage(pet.getPetName() + " is not tired.");
         } else {
             pet.fulfillEnergy();
-            showMessage(pet.getPetName() + " is well-rested!");
+            showMessage(pet.getPetName() + " is well rested!");
             updateProgressBars();
         }
     }//GEN-LAST:event_jButton5ActionPerformed
