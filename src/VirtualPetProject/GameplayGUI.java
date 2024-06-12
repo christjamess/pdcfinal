@@ -4,6 +4,8 @@
  */
 package VirtualPetProject;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 
@@ -24,17 +26,18 @@ public class GameplayGUI extends javax.swing.JFrame {
         initComponents();
         showMessage("Welcome to V-Pet! Press the buttons to interact with your new pet.");
 
-        // Initialize progress bars
         updateProgressBars();
     }
+       
+    
     
     private void updateProgressBars() {
         jProgressBar1.setValue(pet.getHunger());
         jProgressBar2.setValue(pet.getSocial());
-        jProgressBar3.setValue(pet.getFun());
+        jProgressBar3.setValue(pet.getHygiene());
         jProgressBar4.setValue(pet.getEnergy());
         jProgressBar5.setValue(pet.getBladder());
-        jProgressBar6.setValue(pet.getHygiene());
+        jProgressBar6.setValue(pet.getFun());
     }
     
     private void showMessage(String message) {
@@ -68,8 +71,9 @@ public class GameplayGUI extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
         jButton7 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -133,6 +137,14 @@ public class GameplayGUI extends javax.swing.JFrame {
 
         jLabel6.setText("Hygiene:");
 
+        jButton7.setFont(new java.awt.Font("Snap ITC", 0, 18)); // NOI18N
+        jButton7.setText("Save And Exit");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -144,13 +156,24 @@ public class GameplayGUI extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jButton7.setFont(new java.awt.Font("Snap ITC", 0, 18)); // NOI18N
-        jButton7.setText("Save And Exit");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jPanel1.getAccessibleContext().setAccessibleName("jPanel1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -179,7 +202,7 @@ public class GameplayGUI extends javax.swing.JFrame {
                                 .addComponent(jProgressBar5, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jProgressBar3, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(99, 99, 99)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -206,7 +229,7 @@ public class GameplayGUI extends javax.swing.JFrame {
                 .addGap(17, 17, 17)
                 .addComponent(jButton7)
                 .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
@@ -230,9 +253,11 @@ public class GameplayGUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jProgressBar3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(41, 41, 41)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
+                        .addGap(41, 41, 41))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
@@ -247,7 +272,7 @@ public class GameplayGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (pet.getHunger() > 60) {
+        if (pet.getHunger() > 95) {
             showMessage(pet.getPetName() +
                     " is too full to eat right now. Try again later.");
         } else {
@@ -259,7 +284,7 @@ public class GameplayGUI extends javax.swing.JFrame {
 
     
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        if (pet.getBladder() > 60) {
+        if (pet.getBladder() > 90) {
             showMessage(pet.getPetName() + " does not need to go to the toilet right now.");
         } else {
             pet.fulfillBladder();
@@ -285,11 +310,12 @@ public class GameplayGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        if (pet.getFun() > 60) {
-            showMessage(pet.getPetName() + " has had enough playtime for now.");
-        } else {
+        if (pet.getFun() < 90) {
             pet.fulfillFun();
-            showMessage(pet.getPetName() + " had a lot of fun!");
+            showMessage(pet.getPetName() + " had a lot of fun.");
+            updateProgressBars();
+        } else {
+            showMessage(pet.getPetName() + " is not in the mood to play.");
             updateProgressBars();
         }
     }//GEN-LAST:event_jButton6ActionPerformed
@@ -298,10 +324,11 @@ public class GameplayGUI extends javax.swing.JFrame {
         DatabaseSetup.saveNewPet(pet);
         
         showMessage("Pet saved. Exiting V-Pet. Goodbye!");
+        System.exit(0);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if (pet.getSocial() > 60) {
+        if (pet.getSocial() > 80) {
             showMessage("Your pet has had enough cuddles for now.");
         } else {
             pet.fulfillSocial();
@@ -330,6 +357,7 @@ public class GameplayGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JProgressBar jProgressBar2;
     private javax.swing.JProgressBar jProgressBar3;

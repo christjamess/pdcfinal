@@ -46,6 +46,10 @@ public class DatabaseSetup {
             ex.printStackTrace();
         }
     }
+    
+    public static Connection getConnection() {
+        return connection;
+    }
 
     private static void initializeDatabase() {
         if (!doesTableExist("PETS")) {

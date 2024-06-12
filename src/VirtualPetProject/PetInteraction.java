@@ -34,6 +34,10 @@ public class PetInteraction {
         UserInterface.displayMessage("Selected pet: " + pet.getPetName() + " (" + pet.getClass().getSimpleName() + ")");
         interactWithPet(pet);
     }
+    
+    public static Animal getPet() {
+        return petObject;
+    }
 
     public static void interactWithPet(Animal petObject) {
         char choice;
@@ -76,7 +80,7 @@ public class PetInteraction {
         } while (choice != 'x');
     }
 
-    private static void handleFeed() {
+    public static void handleFeed() {
         if (petObject.getHunger() > 80) {
             System.out.println(petObject.getPetName() + " is too full! Try a different interaction.");
         } else {
@@ -85,7 +89,7 @@ public class PetInteraction {
         }
     }
 
-    private static void handleCuddle() {
+    public static void handleCuddle() {
         if (petObject.getHunger() < 20) {
             System.out.println(petObject.getPetName() + " is too hungry to interact! Try a different interaction.");
         } else {
@@ -94,7 +98,7 @@ public class PetInteraction {
         }
     }
 
-    private static void handleToilet() {
+    public static void handleToilet() {
         if (petObject.getBladder() > 50) {
             System.out.println(petObject.getPetName() + " doesn't need the toilet right now! Try a different interaction.");
         } else {
@@ -103,7 +107,7 @@ public class PetInteraction {
         }
     }
 
-    private static void handleBath() {
+    public static void handleBath() {
         if (petObject.getEnergy() < 50) {  
             System.out.println(petObject.getPetName() + " is too tired to bathe! Try a different interaction.");
         } else {
@@ -112,7 +116,7 @@ public class PetInteraction {
         }
     }
 
-    private static void handleSleep() {
+    public static void handleSleep() {
         if (petObject.getEnergy() > 70) {
             System.out.println(petObject.getPetName() + " is full of energy! Try a different interaction.");
         } else {
@@ -121,7 +125,7 @@ public class PetInteraction {
         }
     }
 
-    private static void handlePlay() {
+    public static void handlePlay() {
         if (petObject.getEnergy() < 30) {
             System.out.println(petObject.getPetName() + " is too tired to play! Try a different interaction.");
         } else if (petObject.getHunger() < 30) {  
@@ -132,7 +136,7 @@ public class PetInteraction {
         }
     }
 
-    private static void saveAndExit() {
+    public static void saveAndExit() {
         DatabaseSetup.saveNewPet(petObject);
         UserInterface.displayExitMenu();
     }

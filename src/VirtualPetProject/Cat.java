@@ -16,48 +16,61 @@ public class Cat extends Animal {
 
     @Override
     public void fulfillHunger() {
-        setHunger(getHunger() + 5);
-        setSocial(getSocial() + 10);
+        setHunger(getHunger() + 50);
+        setSocial(getSocial() - 5);
         setBladder(getBladder() - 5);
-        setEnergy(getEnergy() + 5);
-        setFun(getFun() + 10);
+        setHygiene(getHygiene() - 5);
+        setEnergy(getEnergy() - 5);
+        setFun(getFun() - 5);
     }
 
     @Override
     public void fulfillSocial() {
-        setSocial(getSocial() + 30);
-        setHunger(getHunger() - 10);
+        setHunger(getHunger() - 5);
+        setSocial(getSocial() + 50);
+        setBladder(getBladder() - 5);
+        setHygiene(getHygiene() - 5);
         setEnergy(getEnergy() + 10);
-        setFun(getFun() + 20);
     }
 
     @Override
     public void fulfillBladder() {
-        setBladder(getBladder() + 40);
+        setHunger(getHunger() - 5);
+        setSocial(getSocial() - 5);
+        setBladder(getBladder() + 50);
         setHygiene(getHygiene() - 20);
+        setEnergy(getEnergy() - 5);
+        setFun(getFun() - 5);
     }
 
     @Override
     public void fulfillHygiene() {
-        setHygiene(getHygiene() + 40);
-        setEnergy(getEnergy() - 20);
+        setHunger(getHunger() - 5);
+        setSocial(getSocial() - 5);
+        setBladder(getBladder() - 5);
+        setHygiene(getHygiene() + 50);
+        setEnergy(getEnergy() - 5);
+        setFun(getFun() - 5);
     }
 
     @Override
     public void fulfillEnergy() {
-        setEnergy(getEnergy() + 40);
-        setHunger(getHunger() - 20);
-        setSocial(getSocial() - 15);
-        setBladder(getBladder() - 20);
+        setHunger(getHunger() - 5);
+        setSocial(getSocial() - 5);
+        setBladder(getBladder() - 10);
+        setHygiene(getHygiene() - 5);
+        setEnergy(getEnergy() + 50);
         setFun(getFun() - 10);
     }
 
     @Override
     public void fulfillFun() {
-        setFun(getFun() + 30);
-        setEnergy(getEnergy() - 10);
-        setHunger(getHunger() - 10);
-        setHygiene(getHygiene() - 10);
+        setHunger(getHunger() - 5);
+        setSocial(getSocial() + 10);
+        setBladder(getBladder() - 5);
+        setHygiene(getHygiene() - 5);
+        setEnergy(getEnergy() - 5);
+        setFun(getFun() + 50);
     }
 
 }
